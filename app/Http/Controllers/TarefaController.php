@@ -20,4 +20,20 @@ class TarefaController extends Controller
         return response()->json($dados);
     
     }
+
+    public function findById($id)
+    {
+        $tarefa=$this->tarefaService->findById($id);
+        return response()->json($tarefa);
+    }
+
+    public function index()
+    {
+
+    }
+
+    public function getAll(){
+    $tarefa=$this->tarefaService->getAll();
+    return response()->json($tarefa);
+    }
 }

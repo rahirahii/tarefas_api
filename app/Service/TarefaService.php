@@ -4,6 +4,8 @@ namespace App\Service;
 
 use App\Models\Tarefa;
 
+use function Symfony\Component\String\b;
+
 class TarefaService
 {
 
@@ -16,5 +18,32 @@ class TarefaService
         ]);
 
         return $dados;
+    }
+
+    public function findById($id)
+    {
+       $tarefa=Tarefa::find($id);
+       if($tarefa == null){
+        return [
+            'status'=> false,
+            'message'=>'Tarefa não encontrada'
+        ];
+       }
+       
+       return[
+        'status'=>true,
+        'message'=>'Pesquisa realizada com sucesso',
+        'data'=>$tarefa
+       ];
+    }
+
+    public function getAll()
+    {
+      $tarefas= Tarefa::all();
+      return[
+        'status'=> true,
+        'message'=>'Pesquisa efetuada com sucesso',
+        'data'=>$tarefas
+      ];
     }
 };
